@@ -5,7 +5,7 @@
  */
 package controleacademia;
 
-import controleacademia.Telas.LoginUI;
+import controleacademia.Controladores.ControladorLogin;
 
 /**
  *
@@ -18,7 +18,7 @@ public class ControleAcademia {
 	 */
 	public static void main(String[] args) {
 		
-		new LoginUI().setVisible(true);
+		ControladorLogin.getInstance().inicia();
 		
 	}
 	
