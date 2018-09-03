@@ -19,13 +19,13 @@ public class Cargo implements Serializable, ISerializavel {
 	private UUID id;
     private String nome;
     private float salario;
-    private boolean admin;
+    private boolean isAdmin;
 
-    public Cargo(String nome, float salario, boolean admin) {
+    public Cargo(String nome, float salario, boolean isAdmin) {
 		this.id = UUID.randomUUID();
         this.nome = nome;
         this.salario = salario;
-        this.admin = admin;
+        this.isAdmin = isAdmin;
     }
 
     public String getNome() {
@@ -45,11 +45,11 @@ public class Cargo implements Serializable, ISerializavel {
     }
 
     public boolean isAdmin() {
-        return admin;
+        return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
 	@Override

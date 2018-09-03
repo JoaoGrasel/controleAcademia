@@ -5,7 +5,6 @@
  */
 package controleacademia.Controladores;
 
-import controleacademia.Excecoes.LoginInexistenteException;
 import controleacademia.Modelos.Cargo;
 import controleacademia.Modelos.Funcionario;
 import gerenciadorautenticacao.GerenciadorAutenticacao;
