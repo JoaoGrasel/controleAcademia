@@ -6,6 +6,7 @@
 package controleacademia.Telas;
 
 import controleacademia.Controladores.ControladorLogin;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,25 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public void exibir() {
         this.setVisible(true);
+    }
+    
+    public void exibeErroLogin() {
+        JOptionPane.showMessageDialog(
+                null,
+                "Não foi possível logar, verifique se inseriu o login e senha "
+                        + "corretos e tente novamente",
+                "Erro",
+                JOptionPane.PLAIN_MESSAGE
+        );
+    }
+    
+    public void exibeSucessoLogin() {
+        JOptionPane.showMessageDialog(
+                null,
+                "Bem vindo ao GymControl!",
+                "Sucesso",
+                JOptionPane.PLAIN_MESSAGE
+        );
     }
 
     /**
