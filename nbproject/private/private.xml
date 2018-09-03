@@ -3,11 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/thiagobrezinski/Repos/ControleAcademia/src/gerenciadorautenticacao/GerenciadorAutenticacao.java</file>
-            <file>file:/Users/thiagobrezinski/Repos/ControleAcademia/src/controleacademia/Telas/TelaLogin.java</file>
-            <file>file:/Users/thiagobrezinski/Repos/ControleAcademia/src/controleacademia/ControleAcademia.java</file>
-            <file>file:/Users/thiagobrezinski/Repos/ControleAcademia/src/controleacademia/Controladores/ControladorLogin.java</file>
-            <file>file:/Users/thiagobrezinski/Repos/ControleAcademia/src/gerenciadorpersistencia/GerenciadorPersistencia.java</file>
+            <file>file:/Users/thiagobrezinski/Repos/ControleAcademia/src/gerenciadorcadastro/GerenciadorCadastro.java</file>
         </group>
     </open-files>
 </project-private>

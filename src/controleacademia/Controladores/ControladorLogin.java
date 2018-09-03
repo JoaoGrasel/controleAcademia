@@ -35,8 +35,8 @@ public class ControladorLogin {
 		Cargo cargoAdmin = new Cargo("Administrador", 10000, true);
 		Funcionario admin = new Funcionario(
 				"Thiago",
-				123456789,
-				987654321,
+				"123456789",
+				"987654321",
 				"01/01/1981",
 				"999092312",
 				"Rua Sem Nome",

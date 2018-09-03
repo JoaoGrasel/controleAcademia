@@ -18,13 +18,13 @@ public abstract class Usuario implements Serializable, ISerializavel {
 	private static final long serialVersionUID = 1L;
 	private UUID id;
     private String nome;
-    private int cpf;
-    private int rg;
+    private String cpf;
+    private String rg;
     private String dataNascimento;
     private String telefone;
     private String endereco;
 
-    public Usuario(String nome, int cpf, int rg, String dataNascimento, String telefone, String endereco) {
+    public Usuario(String nome, String cpf, String rg, String dataNascimento, String telefone, String endereco) {
 		this.id = UUID.randomUUID();
         this.nome = nome;
         this.cpf = cpf;
@@ -38,11 +38,11 @@ public abstract class Usuario implements Serializable, ISerializavel {
         return this.nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return this.cpf;
     }
 
-    public int getRg() {
+    public String getRg() {
         return this.rg;
     }
 
@@ -62,11 +62,11 @@ public abstract class Usuario implements Serializable, ISerializavel {
         this.nome = nome;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 

@@ -17,8 +17,8 @@ public class Funcionario extends Usuario {
 
     public Funcionario(
 			String nome,
-			int cpf,
-			int rg,
+			String cpf,
+			String rg,
 			String dataNascimento,
 			String telefone,
 			String endereco,
