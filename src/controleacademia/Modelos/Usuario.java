@@ -5,12 +5,18 @@
  */
 package controleacademia.Modelos;
 
+import controleacademia.Interfaces.ISerializavel;
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  *
  * @author vladimir
  */
-public class Usuario {
+public abstract class Usuario implements Serializable, ISerializavel {
 
+	private static final long serialVersionUID = 1L;
+	private UUID id;
     private String nome;
     private int cpf;
     private int rg;
@@ -19,6 +25,7 @@ public class Usuario {
     private String endereco;
 
     public Usuario(String nome, int cpf, int rg, String dataNascimento, String telefone, String endereco) {
+		this.id = UUID.randomUUID();
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
@@ -74,5 +81,10 @@ public class Usuario {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+	@Override
+	public UUID getId() {
+		return this.id;
+	}
 
 }

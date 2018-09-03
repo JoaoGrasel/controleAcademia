@@ -185,7 +185,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ControladorLogin.getInstance().login();
+        ControladorLogin.getInstance().login(jTextField1.getText(), jTextField2.getText());
         this.setVisible(false);
 
     }//GEN-LAST:event_jButton1ActionPerformed

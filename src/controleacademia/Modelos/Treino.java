@@ -5,6 +5,8 @@
  */
 package controleacademia.Modelos;
 
+import controleacademia.Interfaces.ISerializavel;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.UUID;
@@ -13,8 +15,9 @@ import java.util.UUID;
  *
  * @author vladimir
  */
-public class Treino {
+public class Treino implements Serializable, ISerializavel {
 
+	private static final long serialVersionUID = 1L;
 	private UUID id;
     private Collection<Exercicio> exercicios;
 
@@ -43,8 +46,9 @@ public class Treino {
         return this.exercicios.size();
     }
 
+	@Override
 	public UUID getId() {
-		return id;
+		return this.id;
 	}
 
 }

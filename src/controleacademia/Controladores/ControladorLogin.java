@@ -5,6 +5,10 @@
  */
 package controleacademia.Controladores;
 
+import controleacademia.Excecoes.LoginInexistenteException;
+import controleacademia.Modelos.Cargo;
+import controleacademia.Modelos.Funcionario;
+import gerenciadorautenticacao.GerenciadorAutenticacao;
 import gerenciadorpersistencia.GerenciadorPersistencia;
 import controleacademia.Telas.TelaLogin;
 
@@ -29,11 +33,31 @@ public class ControladorLogin {
     }
 	
 	public void inicia() {
+		Cargo cargoAdmin = new Cargo("Administrador", 10000, true);
+		Funcionario admin = new Funcionario(
+				"Thiago",
+				123456789,
+				987654321,
+				"01/01/1981",
+				"999092312",
+				"Rua Sem Nome",
+				"admin",
+				"admin",
+				cargoAdmin
+		);
+	
+		GerenciadorPersistencia.getInstance().put(cargoAdmin);
+		GerenciadorPersistencia.getInstance().put(admin);
+		
         telaLogin.exibir();
     }
 	
-	public void login() {
-//		GerenciadorPersistencia.getInstance()
-		ControladorMenu.getInstance().exibir();
+	public void login(String login, String senha) {
+		if(GerenciadorAutenticacao.getInstance().autentica(login, senha)) {
+			ControladorMenu.getInstance().exibir();
+		} else {
+			System.out.println("Login ou senha incorretos!");
+			//EXIBIR MODAL DE SENHA LOGIN OU SENHA INCORRETOS ERRADA
+		}
 	}
 }

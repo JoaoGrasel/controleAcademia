@@ -15,8 +15,17 @@ public class Funcionario extends Usuario {
     private String senha;
     private Cargo cargo;
 
-    public Funcionario(String nome, int cpf, int rg, String dataNascimento, String telefone, String endereco, String login, String senha,
-            Cargo cargo) {
+    public Funcionario(
+			String nome,
+			int cpf,
+			int rg,
+			String dataNascimento,
+			String telefone,
+			String endereco,
+			String login,
+			String senha,
+			Cargo cargo) {
+		
         super(nome, cpf, rg, dataNascimento, telefone, endereco);
         this.login = login;
         this.senha = senha;
@@ -46,5 +55,4 @@ public class Funcionario extends Usuario {
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
-
 }

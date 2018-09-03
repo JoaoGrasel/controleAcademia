@@ -5,8 +5,8 @@
  */
 package gerenciadorpersistencia;
 
-import controleacademia.Modelos.Treino;
-import controleacademia.Modelos.Usuario;
+import controleacademia.Interfaces.ISerializavel;
+import controleacademia.Modelos.Funcionario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
 public class GerenciadorPersistencia {
 	
 	public static GerenciadorPersistencia gerenciadorPersistencia;
-	private HashMap<Object, Object> cache = new HashMap<>();
+	private HashMap<UUID, ISerializavel> cache = new HashMap<>();
     private final String fileName = "cache.batman";
 	
     public GerenciadorPersistencia() {
@@ -39,33 +40,34 @@ public class GerenciadorPersistencia {
         return gerenciadorPersistencia;
     }
 	
-    public void put(Object object) {
-		if(object instanceof Usuario) {
-			cache.put(((Usuario) object).getCpf(), object);
-		} else {
-			cache.put(((Treino) object).getId(), object);	
-		}
+    public void put(ISerializavel object) {
+		cache.put(object.getId(), object);
         persist();
     }
 	
-    public Object get(Object key) {
-        return cache.get(key);
+    public Object get(UUID id) {
+        return cache.get(id);
     }
 
-    public ArrayList<Object> getList() {
-        return new ArrayList<Object>(cache.values());
+    public ArrayList<ISerializavel> getList() {
+        return new ArrayList<ISerializavel>(cache.values());
     }
 
+    public ArrayList<Funcionario> getFuncionarios() {
+        ArrayList<ISerializavel> values = this.getList();
+		ArrayList<Funcionario> funcionarios = new ArrayList<Funcionario>();
+		for(Object value : values) {
+			if(value instanceof Funcionario) funcionarios.add(((Funcionario) value));
+		}
+		return funcionarios;
+    }
+	
 	public ArrayList<Object> getKeys() {
 		return new ArrayList<>(this.cache.keySet());
 	}
 	
-    public void remove(Object object) {
-        if(object instanceof Usuario) {
-			cache.remove(((Usuario) object).getCpf());
-		} else {
-			cache.remove(((Treino) object).getId());	
-		}
+    public void remove(UUID id) {
+		cache.remove(id);
         persist();
     }
 
@@ -95,16 +97,18 @@ public class GerenciadorPersistencia {
             FileInputStream fIS = new FileInputStream(fileName);
             ObjectInputStream oIS = new ObjectInputStream(fIS);
 
-            cache = (HashMap<Object, Object>) oIS.readObject();
+            cache = (HashMap<UUID, ISerializavel>) oIS.readObject();
 
             oIS.close();
             fIS.close();
 
         } catch (FileNotFoundException ex) {
             persist();
-        } catch (IOException | ClassNotFoundException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(GerenciadorPersistencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (ClassNotFoundException ex) {
+			Logger.getLogger(GerenciadorPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 	
 }

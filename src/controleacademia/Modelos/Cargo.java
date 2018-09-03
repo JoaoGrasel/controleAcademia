@@ -5,17 +5,24 @@
  */
 package controleacademia.Modelos;
 
+import controleacademia.Interfaces.ISerializavel;
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  *
  * @author vladimir
  */
-public class Cargo {
+public class Cargo implements Serializable, ISerializavel {
 
+	private static final long serialVersionUID = 1L;
+	private UUID id;
     private String nome;
     private float salario;
     private boolean admin;
 
     public Cargo(String nome, float salario, boolean admin) {
+		this.id = UUID.randomUUID();
         this.nome = nome;
         this.salario = salario;
         this.admin = admin;
@@ -45,4 +52,8 @@ public class Cargo {
         this.admin = admin;
     }
 
+	@Override
+	public UUID getId() {
+		return this.id;
+	}
 }
