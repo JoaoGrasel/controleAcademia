@@ -7,6 +7,7 @@ package controleacademia.Modelos;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.UUID;
 
 /**
  *
@@ -14,9 +15,11 @@ import java.util.HashSet;
  */
 public class Treino {
 
+	private UUID id;
     private Collection<Exercicio> exercicios;
 
     public Treino() {
+		this.id = UUID.randomUUID();
         this.exercicios = new HashSet<Exercicio>();
     }
 
@@ -39,5 +42,9 @@ public class Treino {
     public int tamanho() {
         return this.exercicios.size();
     }
+
+	public UUID getId() {
+		return id;
+	}
 
 }

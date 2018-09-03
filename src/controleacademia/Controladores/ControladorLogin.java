@@ -5,6 +5,7 @@
  */
 package controleacademia.Controladores;
 
+import gerenciadorpersistencia.GerenciadorPersistencia;
 import controleacademia.Telas.TelaLogin;
 
 /**
@@ -32,6 +33,7 @@ public class ControladorLogin {
     }
 	
 	public void login() {
+//		GerenciadorPersistencia.getInstance()
 		ControladorMenu.getInstance().exibir();
 	}
 }
