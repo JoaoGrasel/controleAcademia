@@ -5,7 +5,9 @@
  */
 package controleacademia.Controladores;
 
+import controleacademia.Modelos.Cargo;
 import gerenciadorpersistencia.GerenciadorPersistencia;
+import gerenciadorcadastro.GerenciadorCadastro;
 import controleacademia.Modelos.Funcionario;
 import controleacademia.Telas.TelaCriarFuncionario;
 import controleacademia.Telas.TelaEditarFuncionario;
@@ -38,6 +40,38 @@ public class ControladorFuncionario {
 
 	public ArrayList<Funcionario> getFuncionarios() {
 		return GerenciadorPersistencia.getInstance().getFuncionarios();
+	}
+	
+	public ArrayList<Cargo> getCargos() {
+		return GerenciadorPersistencia.getInstance().getCargos();
+	}	
+	
+	public void cadastrarFuncionario(
+			String nome,
+			String cpf,
+			String rg,
+			String dataNascimento,
+			String telefone,
+			String endereco,
+			String login,
+			String senha,
+			Cargo cargo
+	) {
+		try {
+			GerenciadorCadastro.getInstance().cadastraFuncionario(
+					nome,
+					cpf,
+					rg,
+					dataNascimento,
+					telefone,
+					endereco,
+					login,
+					senha,
+					cargo
+			);	
+		} catch(Exception ex) {
+			telaCriarFuncionario.exibeErro(ex.getMessage());
+		}
 	}
 	
     public void exibirMenu() {

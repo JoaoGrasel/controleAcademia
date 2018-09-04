@@ -6,6 +6,8 @@
 package controleacademia.Telas;
 
 import controleacademia.Controladores.ControladorFuncionario;
+import controleacademia.Modelos.Cargo;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,14 +16,18 @@ import javax.swing.JOptionPane;
  */
 public class TelaCriarFuncionario extends javax.swing.JFrame {
 
+	private ArrayList<Cargo> cargos;
+	
     /**
      * Creates new form TelaFuncionario
      */
     public TelaCriarFuncionario() {
+		this.cargos = new ArrayList<>();
         initComponents();
     }
 
     public void exibir() {
+		updateData();
         this.setVisible(true);
     }
 
@@ -47,7 +53,32 @@ public class TelaCriarFuncionario extends javax.swing.JFrame {
         );
     }
     
+	public void updateData() {
+        this.cargos = ControladorFuncionario.getInstance().getCargos();
+        jComboBox1.removeAllItems();
+        for (Cargo cargo : cargos) {
+            jComboBox1.addItem(cargo.getNome());
 
+        }
+		
+        limpaTextFields();
+
+        this.repaint();
+    }
+
+	public void limpaTextFields() {
+		jTextField1.setText("");
+		jTextField6.setText("");
+		jTextField2.setText("");
+		jTextField5.setText("");
+		jTextField10.setText("");
+		jTextField11.setText("");
+		jTextField3.setText("");
+		jTextField4.setText("");
+		jTextField7.setText("");
+		jPasswordField1.setText("");
+    }
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -369,7 +400,18 @@ public class TelaCriarFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ControladorFuncionario.getInstance().voltarMenuFuncionario();
+        String dataNascimentoFormatada = jTextField5.getText().concat(jTextField10.getText()).concat(jTextField11.getText());
+		ControladorFuncionario.getInstance().cadastrarFuncionario(
+				jTextField1.getText(),
+				jTextField6.getText(),
+				jTextField2.getText(),
+				dataNascimentoFormatada,
+				jTextField3.getText(),
+				jTextField4.getText(),
+				jTextField7.getText(),
+				jPasswordField1.getText(),
+				((Cargo) jComboBox1.getSelectedItem())
+		);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed

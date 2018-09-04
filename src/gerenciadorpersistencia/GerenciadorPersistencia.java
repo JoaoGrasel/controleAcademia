@@ -6,6 +6,7 @@
 package gerenciadorpersistencia;
 
 import controleacademia.Interfaces.ISerializavel;
+import controleacademia.Modelos.Cargo;
 import controleacademia.Modelos.Funcionario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,6 +61,15 @@ public class GerenciadorPersistencia {
 			if(value instanceof Funcionario) funcionarios.add(((Funcionario) value));
 		}
 		return funcionarios;
+    }
+	
+	public ArrayList<Cargo> getCargos() {
+        ArrayList<ISerializavel> values = this.getList();
+		ArrayList<Cargo> cargos = new ArrayList<Cargo>();
+		for(Object value : values) {
+			if(value instanceof Cargo) cargos.add(((Cargo) value));
+		}
+		return cargos;
     }
 	
 	public ArrayList<Object> getKeys() {

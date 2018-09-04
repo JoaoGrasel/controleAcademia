@@ -65,9 +65,10 @@ public class TelaGerenciadorFuncionarios extends javax.swing.JFrame {
 		modelTable1.addColumn("CPF");
 		modelTable1.addColumn("RG");
 		modelTable1.addColumn("Data de nascimento");
+		modelTable1.addColumn("Telefone");
 		modelTable1.addColumn("Endereço");
 		modelTable1.addColumn("Cargo");
-
+		
         ArrayList<Funcionario> listaFuncionarios = ControladorFuncionario.getInstance().getFuncionarios();
         jTable1.removeAll();
         for (Funcionario funcionario : listaFuncionarios) {
@@ -76,6 +77,7 @@ public class TelaGerenciadorFuncionarios extends javax.swing.JFrame {
 				funcionario.getCpf(),
                 funcionario.getRg(),
                 funcionario.getDataNascimento(),
+				funcionario.getTelefone(),
                 funcionario.getEndereco(),
                 funcionario.getCargo().getNome()
             });
