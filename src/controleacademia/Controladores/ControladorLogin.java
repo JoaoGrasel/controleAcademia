@@ -45,18 +45,40 @@ public class ControladorLogin {
 				cargoAdmin
 		);
 	
+		Cargo cargoComum = new Cargo("Comum", 1000, false);
+		Funcionario comum = new Funcionario(
+				"João",
+				"123456789",
+				"987654321",
+				"01/01/1981",
+				"999092312",
+				"Rua Sem Nome",
+				"comum",
+				"comum",
+				cargoComum
+		);
+		
 		GerenciadorPersistencia.getInstance().put(cargoAdmin);
 		GerenciadorPersistencia.getInstance().put(admin);
+		
+		GerenciadorPersistencia.getInstance().put(cargoComum);
+		GerenciadorPersistencia.getInstance().put(comum);
 		
         telaLogin.exibir();
     }
 	
 	public void login(String login, String senha) {
-		if(GerenciadorAutenticacao.getInstance().autentica(login, senha)) {
-			ControladorMenu.getInstance().exibir();
-		} else {
-			System.out.println("Login ou senha incorretos!");
-			//EXIBIR MODAL DE SENHA LOGIN OU SENHA INCORRETOS ERRADA
+		try {
+			Funcionario funcionario = GerenciadorAutenticacao.getInstance().autentica(login, senha);
+			telaLogin.ocultar();
+			
+			if(funcionario.getCargo().isAdmin()) {
+				ControladorMenu.getInstance().exibirMenuAdmin();
+			} else {
+				ControladorMenu.getInstance().exibirMenuComum();
+			}
+		} catch(Exception ex) {
+			telaLogin.exibeErroLogin();
 		}
 	}
 }

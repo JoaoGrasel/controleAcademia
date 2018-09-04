@@ -6,6 +6,7 @@
 package controleacademia.Controladores;
 
 import controleacademia.Telas.TelaMenuAdmin;
+import controleacademia.Telas.TelaMenuComum;
 
 /**
  *
@@ -14,10 +15,12 @@ import controleacademia.Telas.TelaMenuAdmin;
 public class ControladorMenu {
 	
 	public static ControladorMenu controladorMenu;
-	public TelaMenuAdmin telaMenu;
+	private TelaMenuAdmin telaMenuAdmin;
+	private TelaMenuComum telaMenuComum;
 	
 	private ControladorMenu() {
-		this.telaMenu = new TelaMenuAdmin();
+		this.telaMenuAdmin = new TelaMenuAdmin();
+		this.telaMenuComum = new TelaMenuComum();
 	}
 	
 	public static ControladorMenu getInstance() {
@@ -27,8 +30,12 @@ public class ControladorMenu {
         return controladorMenu;
     }
 	
-	public void exibir() {
-		this.telaMenu.exibir();
+	public void exibirMenuComum() {
+		this.telaMenuComum.exibir();
+	}
+	
+	public void exibirMenuAdmin() {
+		this.telaMenuAdmin.exibir();
 	}
 	
 }

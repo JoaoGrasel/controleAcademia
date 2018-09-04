@@ -49,7 +49,6 @@ public class ControladorAluno {
 
     public void voltarMenuPrincipal() {
         this.telaGerenciadorAlunos.voltar();
-        ControladorMenu.getInstance().exibir();
     }
 
     public void voltarMenuAluno() {

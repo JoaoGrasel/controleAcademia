@@ -5,6 +5,7 @@
  */
 package gerenciadorautenticacao;
 
+import controleacademia.Excecoes.LoginInvalidoException;
 import controleacademia.Modelos.Funcionario;
 import gerenciadorpersistencia.GerenciadorPersistencia;
 
@@ -23,13 +24,13 @@ public class GerenciadorAutenticacao {
         return gerenciadorAutenticacao;
     }
 	
-	public boolean autentica(String login, String senha) {
+	public Funcionario autentica(String login, String senha) throws Exception {
 		for(Funcionario funcionario : GerenciadorPersistencia.getInstance().getFuncionarios()) {
 			if(funcionario.getLogin().equals(login) && funcionario.getSenha().equals(senha)) {
-				return true;
+				return funcionario;
 			}
 		}
-		return false;
+		throw new LoginInvalidoException();
 	}
 	
 }

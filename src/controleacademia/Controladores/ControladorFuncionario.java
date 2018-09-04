@@ -5,10 +5,12 @@
  */
 package controleacademia.Controladores;
 
-import controleacademia.Modelos.Cargo;
+import gerenciadorpersistencia.GerenciadorPersistencia;
+import controleacademia.Modelos.Funcionario;
 import controleacademia.Telas.TelaCriarFuncionario;
 import controleacademia.Telas.TelaEditarFuncionario;
 import controleacademia.Telas.TelaGerenciadorFuncionarios;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,13 +36,16 @@ public class ControladorFuncionario {
         return controladorFuncionario;
     }
 
+	public ArrayList<Funcionario> getFuncionarios() {
+		return GerenciadorPersistencia.getInstance().getFuncionarios();
+	}
+	
     public void exibirMenu() {
         this.telaGerenciadorFuncionarios.exibir();
     }
 
     public void voltarMenuPrincipal() {
         this.telaGerenciadorFuncionarios.voltar();
-        ControladorMenu.getInstance().exibir();
     }
 
      public void voltarMenuFuncionario() {
