@@ -7,8 +7,7 @@ package controleacademia.Modelos;
 
 import controleacademia.Interfaces.ISerializavel;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -19,14 +18,14 @@ public class Treino implements Serializable, ISerializavel {
 
 	private static final long serialVersionUID = 1L;
 	private UUID id;
-    private Collection<Exercicio> exercicios;
+    private ArrayList<Exercicio> exercicios;
 
-    public Treino() {
+    public Treino(ArrayList<Exercicio> exercicios) {
 		this.id = UUID.randomUUID();
-        this.exercicios = new HashSet<Exercicio>();
+        this.exercicios = new ArrayList<Exercicio>(exercicios);
     }
 
-    public Collection<Exercicio> getExercicios() {
+    public ArrayList<Exercicio> getExercicios() {
         return exercicios;
     }
 

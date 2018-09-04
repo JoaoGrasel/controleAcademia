@@ -39,21 +39,15 @@ public class GerenciadorCadastro {
 		String login,
 		String senha,
 		Cargo cargo
-	) {
-		try {
-			ValidadorAtributos.getInstance().validaNome(nome);
-			ValidadorAtributos.getInstance().validaCpf(cpf);
-			ValidadorAtributos.getInstance().validaRg(rg);
-			ValidadorAtributos.getInstance().validaDataNascimento(dataNascimento);
-			ValidadorAtributos.getInstance().validaTelefone(telefone);
-			ValidadorAtributos.getInstance().validaEndereco(endereco);
-			ValidadorAtributos.getInstance().validaLogin(login);
-			ValidadorAtributos.getInstance().validaSenha(senha);
-		} catch(Exception ex) {
-			
-			//TODO CHAMAR MODAL ERRO ex.getMessage()
-			
-		}
+	) throws Exception {
+		ValidadorAtributos.getInstance().validaNome(nome);
+		ValidadorAtributos.getInstance().validaCpf(cpf);
+		ValidadorAtributos.getInstance().validaRg(rg);
+		ValidadorAtributos.getInstance().validaDataNascimento(dataNascimento);
+		ValidadorAtributos.getInstance().validaTelefone(telefone);
+		ValidadorAtributos.getInstance().validaEndereco(endereco);
+		ValidadorAtributos.getInstance().validaLogin(login);
+		ValidadorAtributos.getInstance().validaSenha(senha);
 		
 		Funcionario funcionario = new Funcionario(
 				nome,
@@ -95,19 +89,13 @@ public class GerenciadorCadastro {
 		String telefone,
 		String endereco,
 		Treino treino
-	) {
-		try {
-			ValidadorAtributos.getInstance().validaNome(nome);
-			ValidadorAtributos.getInstance().validaCpf(cpf);
-			ValidadorAtributos.getInstance().validaRg(rg);
-			ValidadorAtributos.getInstance().validaDataNascimento(dataNascimento);
-			ValidadorAtributos.getInstance().validaTelefone(telefone);
-			ValidadorAtributos.getInstance().validaEndereco(endereco);
-		} catch(Exception ex) {
-			
-			//TODO CHAMAR MODAL ERRO
-			
-		}
+	) throws Exception {
+		ValidadorAtributos.getInstance().validaNome(nome);
+		ValidadorAtributos.getInstance().validaCpf(cpf);
+		ValidadorAtributos.getInstance().validaRg(rg);
+		ValidadorAtributos.getInstance().validaDataNascimento(dataNascimento);
+		ValidadorAtributos.getInstance().validaTelefone(telefone);
+		ValidadorAtributos.getInstance().validaEndereco(endereco);
 		
 		Aluno aluno = new Aluno(
 				nome,
@@ -139,8 +127,25 @@ public class GerenciadorCadastro {
 		}
 	}
 	
-//	public Treino cadastraTreino(ArrayList exercicios) {
-//		
-//	};
+	public Treino cadastraTreino(ArrayList<Exercicio> exercicios) {
+		Treino treino = new Treino(exercicios);
+		return treino;
+	};
+	
+//	public Treino editaTreino(int index) {
+//		if(index != -1) {
+//			
+//		} else {
+////			TODO CHAMAR MODAL ERRO
+//		}
+//	}
+	
+	public void removeTreino(int index) {
+		if(index != -1) {
+			
+		} else {
+//			TODO CHAMAR MODAL ERRO
+		}
+	}
 	
 }

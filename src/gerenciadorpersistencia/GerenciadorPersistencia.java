@@ -29,7 +29,7 @@ public class GerenciadorPersistencia {
 	private HashMap<UUID, ISerializavel> cache = new HashMap<>();
     private final String fileName = "cache.batman";
 	
-    public GerenciadorPersistencia() {
+    private GerenciadorPersistencia() {
         load();
     }
 
