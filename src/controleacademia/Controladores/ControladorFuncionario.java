@@ -7,6 +7,7 @@ package controleacademia.Controladores;
 
 import controleacademia.Modelos.Cargo;
 import controleacademia.Telas.TelaCriarFuncionario;
+import controleacademia.Telas.TelaEditarFuncionario;
 import controleacademia.Telas.TelaGerenciadorFuncionarios;
 
 /**
@@ -16,12 +17,14 @@ import controleacademia.Telas.TelaGerenciadorFuncionarios;
 public class ControladorFuncionario {
 
     public static ControladorFuncionario controladorFuncionario;
-    public TelaGerenciadorFuncionarios telaGerenciadorFuncionarios;
-    public TelaCriarFuncionario telaCriarFuncionario;
+    private TelaGerenciadorFuncionarios telaGerenciadorFuncionarios;
+    private TelaCriarFuncionario telaCriarFuncionario;
+    private TelaEditarFuncionario telaEditarFuncionario;
 
     private ControladorFuncionario() {
         this.telaGerenciadorFuncionarios = new TelaGerenciadorFuncionarios();
         this.telaCriarFuncionario = new TelaCriarFuncionario();
+        this.telaEditarFuncionario = new TelaEditarFuncionario();
     }
 
     public static ControladorFuncionario getInstance() {
@@ -31,29 +34,24 @@ public class ControladorFuncionario {
         return controladorFuncionario;
     }
 
-    // ============= EXIBICAO DE TELAS =============
     public void exibirMenu() {
         this.telaGerenciadorFuncionarios.exibir();
     }
 
     public void voltarMenuPrincipal() {
         this.telaGerenciadorFuncionarios.voltar();
+        ControladorMenu.getInstance().exibir();
     }
 
-    public void voltarMenuFuncionario() {
+     public void voltarMenuFuncionario() {
         this.telaCriarFuncionario.voltar();
     }
 
     public void exibirCriarFuncionario() {
         this.telaCriarFuncionario.exibir();
     }
-    // ============= CADASTRO =============
-
-    public boolean cadastraFuncionario(String nome, int cpf, int rg, String dataNascimento, String telefone, String endereco, String login, String senha,
-            Cargo cargo) {
-        //if cpfEhValido(cpf);
-        //if rgEhValido(rg);
-        return true;
-
+    
+    public void exibirEditarFuncionario(){
+        this.telaEditarFuncionario.exibir();
     }
 }
