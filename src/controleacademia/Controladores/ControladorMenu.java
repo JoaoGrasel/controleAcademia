@@ -5,7 +5,7 @@
  */
 package controleacademia.Controladores;
 
-import controleacademia.Telas.TelaMenu;
+import controleacademia.Telas.TelaMenuAdmin;
 
 /**
  *
@@ -14,10 +14,10 @@ import controleacademia.Telas.TelaMenu;
 public class ControladorMenu {
 	
 	public static ControladorMenu controladorMenu;
-	public TelaMenu telaMenu;
+	public TelaMenuAdmin telaMenu;
 	
 	private ControladorMenu() {
-		this.telaMenu = new TelaMenu();
+		this.telaMenu = new TelaMenuAdmin();
 	}
 	
 	public static ControladorMenu getInstance() {
