@@ -5,10 +5,12 @@
  */
 package controleacademia.Telas;
 
+import gerenciadorpersistencia.GerenciadorPersistencia;
 import controleacademia.Controladores.ControladorAluno;
 import controleacademia.Modelos.Exercicio;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,17 +18,20 @@ import javax.swing.JOptionPane;
  */
 public class TelaCriarTreino extends javax.swing.JFrame {
 
+	private ArrayList<Exercicio> exercicios;
 	private ArrayList<Exercicio> exerciciosSelecionados;
 	
     /**
      * Creates new form TelaCriarTreino
      */
     public TelaCriarTreino() {
+		this.exercicios = new ArrayList<>();
 		this.exerciciosSelecionados = new ArrayList<>();
         initComponents();
     }
     
      public void exibir() {
+		 updateData();
         this.setVisible(true);
     }
 
@@ -51,6 +56,33 @@ public class TelaCriarTreino extends javax.swing.JFrame {
         );
     }
 
+	public void updateData() {
+		
+		DefaultTableModel modelTable1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        modelTable1.addColumn("Nome");
+		
+        jTable1.removeAll();
+        for (Exercicio exercicio : this.exerciciosSelecionados) {
+            modelTable1.addRow(new Object[]{
+                exercicio.getNome()
+            });
+        }
+        jTable1.setModel(modelTable1);
+		
+		this.exercicios = ControladorAluno.getInstance().getExercicios();
+		jComboBox1.removeAllItems();
+        for (Exercicio exercicio : this.exercicios) {
+            jComboBox1.addItem(exercicio.getNome());
+        }
+		this.repaint();
+	}
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,10 +138,19 @@ public class TelaCriarTreino extends javax.swing.JFrame {
         jLabel2.setText("Lista de Exercícios Existentes");
 
         jButton1.setText("Adicionar Exercício");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Remover Exercício");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -150,24 +191,24 @@ public class TelaCriarTreino extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addGap(61, 61, 61)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(52, 52, 52)
-                                .addComponent(jComboBox1, 0, 246, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(30, 30, 30)))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                .addComponent(jTextField1)
                 .addGap(45, 45, 45)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(145, 145, 145)
@@ -262,6 +303,22 @@ public class TelaCriarTreino extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.voltar();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jComboBox1.getSelectedIndex() != -1) {
+			this.exerciciosSelecionados.add(this.exercicios.get(jComboBox1.getSelectedIndex()));
+			updateData();	
+		}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(jTable1.getSelectedRow() != -1) {
+			this.exerciciosSelecionados.remove(jTable1.getSelectedRow());
+			updateData();	
+		} else {
+			exibeErro("Você deve selecionar um exercício para poder remover");
+		}
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

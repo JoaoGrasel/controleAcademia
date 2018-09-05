@@ -8,6 +8,7 @@ package gerenciadorpersistencia;
 import controleacademia.Interfaces.ISerializavel;
 import controleacademia.Modelos.Aluno;
 import controleacademia.Modelos.Cargo;
+import controleacademia.Modelos.Exercicio;
 import controleacademia.Modelos.Funcionario;
 import controleacademia.Modelos.Treino;
 import java.io.FileInputStream;
@@ -90,6 +91,15 @@ public class GerenciadorPersistencia {
 			if(value instanceof Treino) treinos.add(((Treino) value));
 		}
 		return treinos;
+    }
+	
+	public ArrayList<Exercicio> getExercicios() {
+        ArrayList<ISerializavel> values = this.getList();
+		ArrayList<Exercicio> exercicios = new ArrayList<Exercicio>();
+		for(Object value : values) {
+			if(value instanceof Exercicio) exercicios.add(((Exercicio) value));
+		}
+		return exercicios;
     }
 	
 	public ArrayList<Object> getKeys() {

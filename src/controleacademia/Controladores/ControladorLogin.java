@@ -6,6 +6,7 @@
 package controleacademia.Controladores;
 
 import controleacademia.Modelos.Cargo;
+import controleacademia.Modelos.Exercicio;
 import controleacademia.Modelos.Funcionario;
 import gerenciadorautenticacao.GerenciadorAutenticacao;
 import gerenciadorpersistencia.GerenciadorPersistencia;
@@ -32,6 +33,11 @@ public class ControladorLogin {
     }
 	
 	public void inicia() {
+		persisteFixtures();
+        telaLogin.exibir();
+    }
+	
+	private void persisteFixtures() {
 		Cargo cargoAdmin = new Cargo("Administrador", 10000, true);
 		Funcionario admin = new Funcionario(
 				"Thiago",
@@ -44,28 +50,31 @@ public class ControladorLogin {
 				"admin",
 				cargoAdmin
 		);
-	
-		Cargo cargoComum = new Cargo("Comum", 1000, false);
-		Funcionario comum = new Funcionario(
-				"João",
-				"123456789",
-				"987654321",
-				"01/01/1981",
-				"999092312",
-				"Rua Sem Nome",
-				"comum",
-				"comum",
-				cargoComum
-		);
+		
+		Exercicio exercicio1 = new Exercicio("Remada Alta");
+		Exercicio exercicio2 = new Exercicio("Remada Baixa");
+		Exercicio exercicio3 = new Exercicio("Supino");
+		Exercicio exercicio4 = new Exercicio("Rosca Direta");
+		Exercicio exercicio5 = new Exercicio("Rosca Invertida");
+		Exercicio exercicio6 = new Exercicio("Tríceps Polia");
+		Exercicio exercicio7 = new Exercicio("Tríceps Banco");
+		Exercicio exercicio8 = new Exercicio("Rosca Polia");
+		Exercicio exercicio9 = new Exercicio("Encolhimento");
+		Exercicio exercicio10 = new Exercicio("Crucifixo");
 		
 		GerenciadorPersistencia.getInstance().put(cargoAdmin);
 		GerenciadorPersistencia.getInstance().put(admin);
-		
-		GerenciadorPersistencia.getInstance().put(cargoComum);
-		GerenciadorPersistencia.getInstance().put(comum);
-		
-        telaLogin.exibir();
-    }
+		GerenciadorPersistencia.getInstance().put(exercicio1);
+		GerenciadorPersistencia.getInstance().put(exercicio2);
+		GerenciadorPersistencia.getInstance().put(exercicio3);
+		GerenciadorPersistencia.getInstance().put(exercicio4);
+		GerenciadorPersistencia.getInstance().put(exercicio5);
+		GerenciadorPersistencia.getInstance().put(exercicio6);
+		GerenciadorPersistencia.getInstance().put(exercicio7);
+		GerenciadorPersistencia.getInstance().put(exercicio8);
+		GerenciadorPersistencia.getInstance().put(exercicio9);
+		GerenciadorPersistencia.getInstance().put(exercicio10);
+	}
 	
 	public void login(String login, String senha) {
 		try {

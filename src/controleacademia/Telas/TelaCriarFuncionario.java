@@ -58,7 +58,6 @@ public class TelaCriarFuncionario extends javax.swing.JFrame {
         jComboBox1.removeAllItems();
         for (Cargo cargo : cargos) {
             jComboBox1.addItem(cargo.getNome());
-
         }
 		
         limpaTextFields();

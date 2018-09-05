@@ -5,15 +5,22 @@
  */
 package controleacademia.Modelos;
 
+import controleacademia.Interfaces.ISerializavel;
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  *
  * @author vladimir
  */
-public class Exercicio {
+public class Exercicio implements Serializable, ISerializavel {
 
+	private static final long serialVersionUID = 1L;
+	private UUID id;
     private String nome;
 
     public Exercicio(String nome) {
+		this.id = UUID.randomUUID();
         this.nome = nome;
     }
 
@@ -24,5 +31,10 @@ public class Exercicio {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+	@Override
+	public UUID getId() {
+		return this.id;
+	}
 
 }

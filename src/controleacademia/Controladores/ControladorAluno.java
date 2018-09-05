@@ -57,6 +57,10 @@ public class ControladorAluno {
 		return GerenciadorPersistencia.getInstance().getTreinos();
 	}
 	
+	public ArrayList<Exercicio> getExercicios() {
+		return GerenciadorPersistencia.getInstance().getExercicios();
+	}	
+	
 	public void cadastrarAluno(
 			String nome,
 			String cpf,
