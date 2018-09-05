@@ -39,7 +39,7 @@ public class ControladorLogin {
 	
 	private void persisteFixtures() {
 		Cargo cargoAdmin = new Cargo("Administrador", 10000, true);
-                Cargo cargoRecepcionista = new Cargo("Recepcionista", 2500, false);
+		Cargo cargoRecepcionista = new Cargo("Recepcionista", 2500, false);
 		Funcionario admin = new Funcionario(
 				"Thiago",
 				"123456789",
@@ -51,7 +51,7 @@ public class ControladorLogin {
 				"admin",
 				cargoAdmin
 		);
-                Funcionario comum = new Funcionario(
+		Funcionario comum = new Funcionario(
 				"Joao",
 				"123456789",
 				"987654321",
@@ -60,7 +60,7 @@ public class ControladorLogin {
 				"Rua Sem Nome",
 				"comum",
 				"comum",
-				cargoAdmin
+				cargoRecepcionista
 		);
 		
 		Exercicio exercicio1 = new Exercicio("Remada Alta");
@@ -76,8 +76,8 @@ public class ControladorLogin {
 		
 		GerenciadorPersistencia.getInstance().put(cargoAdmin);
 		GerenciadorPersistencia.getInstance().put(admin);
-                GerenciadorPersistencia.getInstance().put(cargoRecepcionista);
-                GerenciadorPersistencia.getInstance().put(comum);
+		GerenciadorPersistencia.getInstance().put(cargoRecepcionista);
+		GerenciadorPersistencia.getInstance().put(comum);
 		GerenciadorPersistencia.getInstance().put(exercicio1);
 		GerenciadorPersistencia.getInstance().put(exercicio2);
 		GerenciadorPersistencia.getInstance().put(exercicio3);
