@@ -68,26 +68,6 @@ public class TelaSelecionarTreino extends javax.swing.JFrame {
         for (Treino treino : this.treinos) {
             jComboBox2.addItem(treino.getNome());
         }
-        
-//        DefaultTableModel modelTable2 = new DefaultTableModel() {
-//            @Override
-//            public boolean isCellEditable(int row, int column) {
-//                return false;
-//            }
-//        };
-//
-//        modelTable2.addColumn("Nome");
-//		
-//        jTable2.removeAll();
-//        for (Exercicio exercicio : this.treinos.get(0).getExercicios()) {
-//            System.out.println(exercicio.getNome());
-//            modelTable2.addRow(new Object[]{
-//                exercicio.getNome()
-//            });
-//        }
-//        jTable1.setModel(modelTable2);
-//        
-//        this.repaint();
 	}
 
     /**

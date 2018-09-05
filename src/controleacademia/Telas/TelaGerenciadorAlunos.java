@@ -54,6 +54,15 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
         );
     }
 
+	public void exibeErro(String mensagem) {
+        JOptionPane.showMessageDialog(
+                null,
+                mensagem,
+                "Erro",
+                JOptionPane.PLAIN_MESSAGE
+        );
+    }
+	
 	public void updateData() {
 
         DefaultTableModel modelTable1 = new DefaultTableModel() {
@@ -132,7 +141,7 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Selecionar Treino");
+        jButton5.setText("Definir Treino");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -221,7 +230,11 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ControladorAluno.getInstance().exibeSelecionarTreino(this.alunos.get(jTable1.getSelectedRow()));
+        if(jTable1.getSelectedRow() != -1) {
+			ControladorAluno.getInstance().exibeSelecionarTreino(this.alunos.get(jTable1.getSelectedRow()));	
+		} else {
+			exibeErro("Você deve selecionar um aluno para definir seu treino");
+		}
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
