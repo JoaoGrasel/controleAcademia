@@ -344,7 +344,19 @@ public class TelaCriarAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ControladorAluno.getInstance().voltarMenuAluno();
+		String dataNascimentoFormatada = jTextField7.getText().concat(jTextField13.getText()).concat(jTextField12.getText());
+		
+		ControladorAluno.getInstance().cadastrarAluno(
+				jTextField1.getText(),
+				jTextField6.getText(),
+				jTextField2.getText(),
+				dataNascimentoFormatada,
+				jTextField3.getText(),
+				jTextField4.getText()
+		);
+		
+		this.setVisible(false);
+		ControladorAluno.getInstance().updateAlunosTableData();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

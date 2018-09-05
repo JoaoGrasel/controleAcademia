@@ -5,12 +5,18 @@
  */
 package controleacademia.Controladores;
 
+import controleacademia.Modelos.Aluno;
+import controleacademia.Modelos.Exercicio;
+import controleacademia.Modelos.Treino;
+import gerenciadorcadastro.GerenciadorCadastro;
+import gerenciadorpersistencia.GerenciadorPersistencia;
 import controleacademia.Telas.TelaCriarAluno;
 import controleacademia.Telas.TelaCriarTreino;
 import controleacademia.Telas.TelaEditarAluno;
 import controleacademia.Telas.TelaEditarTreino;
 import controleacademia.Telas.TelaGerenciadorAlunos;
 import controleacademia.Telas.TelaGerenciadorTreinos;
+import java.util.ArrayList;
 
 /**
  *
@@ -43,6 +49,52 @@ public class ControladorAluno {
         return controladorAluno;
     }
 
+	public ArrayList<Aluno> getAlunos() {
+		return GerenciadorPersistencia.getInstance().getAlunos();
+	}
+
+	public ArrayList<Treino> getTreinos() {
+		return GerenciadorPersistencia.getInstance().getTreinos();
+	}
+	
+	public void cadastrarAluno(
+			String nome,
+			String cpf,
+			String rg,
+			String dataNascimento,
+			String telefone,
+			String endereco
+	) {
+		try {
+			GerenciadorCadastro.getInstance().cadastraAluno(
+					nome,
+					cpf,
+					rg,
+					dataNascimento,
+					telefone,
+					endereco
+			);	
+		} catch(Exception ex) {
+			telaCriarAluno.exibeErro(ex.getMessage());
+		}
+	}
+	
+	public void cadastrarTreino(String nome, ArrayList<Exercicio> exercicios) {
+		try {
+			GerenciadorCadastro.getInstance().cadastraTreino(nome, exercicios);
+		} catch(Exception ex) {
+			this.telaCriarTreino.exibeErro(ex.getMessage());
+		}
+	}
+	
+	public void updateAlunosTableData() {
+		this.telaGerenciadorAlunos.updateData();
+	}
+	
+	public void updateTreinosTableData() {
+		this.telaGerenciadorTreinos.updateData();
+	}
+	
     public void exibirMenu() {
         this.telaGerenciadorAlunos.exibir();
     }

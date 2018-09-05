@@ -6,7 +6,10 @@
 package controleacademia.Telas;
 
 import controleacademia.Controladores.ControladorAluno;
+import controleacademia.Modelos.Treino;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +25,7 @@ public class TelaGerenciadorTreinos extends javax.swing.JFrame {
     }
    
     public void exibir() {
+		updateData();
         this.setVisible(true);
     }
 
@@ -47,6 +51,31 @@ public class TelaGerenciadorTreinos extends javax.swing.JFrame {
         );
     }
 
+	public void updateData() {
+
+        DefaultTableModel modelTable1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+		
+        modelTable1.addColumn("Nome");
+		
+        ArrayList<Treino> listaTreinos = ControladorAluno.getInstance().getTreinos();
+        jTable1.removeAll();
+		
+        for (Treino treino : listaTreinos) {
+	
+            modelTable1.addRow(new Object[]{
+                treino.getNome(),
+            });
+        }
+		
+        jTable1.setModel(modelTable1);
+        this.repaint();
+    }
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

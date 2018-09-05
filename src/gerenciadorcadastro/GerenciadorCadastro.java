@@ -87,8 +87,7 @@ public class GerenciadorCadastro {
 		String rg,
 		String dataNascimento,
 		String telefone,
-		String endereco,
-		Treino treino
+		String endereco
 	) throws Exception {
 		ValidadorAtributos.getInstance().validaNome(nome);
 		ValidadorAtributos.getInstance().validaCpf(cpf);
@@ -103,8 +102,7 @@ public class GerenciadorCadastro {
 				rg,
 				dataNascimento,
 				telefone,
-				endereco,
-				treino
+				endereco
 		);
 		
 		GerenciadorPersistencia.getInstance().put(aluno);
@@ -127,8 +125,12 @@ public class GerenciadorCadastro {
 		}
 	}
 	
-	public Treino cadastraTreino(ArrayList<Exercicio> exercicios) {
-		Treino treino = new Treino(exercicios);
+	public Treino cadastraTreino(String nome, ArrayList<Exercicio> exercicios) throws Exception {
+		ValidadorAtributos.getInstance().validaNome(nome);
+		
+		Treino treino = new Treino(nome, exercicios);
+		
+		GerenciadorPersistencia.getInstance().put(treino);
 		return treino;
 	};
 	

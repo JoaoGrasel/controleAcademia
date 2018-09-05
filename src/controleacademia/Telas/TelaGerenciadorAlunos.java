@@ -6,7 +6,10 @@
 package controleacademia.Telas;
 
 import controleacademia.Controladores.ControladorAluno;
+import controleacademia.Modelos.Aluno;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +25,7 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
     }
 
     public void exibir() {
+		updateData();
         this.setVisible(true);
     }
 
@@ -47,6 +51,44 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
         );
     }
 
+	public void updateData() {
+
+        DefaultTableModel modelTable1 = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+		
+        modelTable1.addColumn("Nome");
+		modelTable1.addColumn("CPF");
+		modelTable1.addColumn("RG");
+		modelTable1.addColumn("Data de nascimento");
+		modelTable1.addColumn("Telefone");
+		modelTable1.addColumn("Endereço");
+		modelTable1.addColumn("Treino");
+		
+        ArrayList<Aluno> listaAlunos = ControladorAluno.getInstance().getAlunos();
+        jTable1.removeAll();
+		
+        for (Aluno aluno : listaAlunos) {
+			String nomeTreino = aluno.getTreino() != null ? aluno.getTreino().getNome() : "";
+			
+            modelTable1.addRow(new Object[]{
+                aluno.getNome(),
+				aluno.getCpf(),
+                aluno.getRg(),
+                aluno.getDataNascimento(),
+				aluno.getTelefone(),
+                aluno.getEndereco(),
+				nomeTreino,
+            });
+        }
+		
+        jTable1.setModel(modelTable1);
+        this.repaint();
+    }
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

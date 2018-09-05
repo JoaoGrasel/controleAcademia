@@ -5,6 +5,9 @@
  */
 package controleacademia.Telas;
 
+import controleacademia.Controladores.ControladorAluno;
+import controleacademia.Modelos.Exercicio;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,10 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class TelaCriarTreino extends javax.swing.JFrame {
 
+	private ArrayList<Exercicio> exerciciosSelecionados;
+	
     /**
      * Creates new form TelaCriarTreino
      */
     public TelaCriarTreino() {
+		this.exerciciosSelecionados = new ArrayList<>();
         initComponents();
     }
     
@@ -244,7 +250,13 @@ public class TelaCriarTreino extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.voltar();
+        ControladorAluno.getInstance().cadastrarTreino(
+				jTextField1.getText(),
+				this.exerciciosSelecionados
+		);
+		
+		this.setVisible(false);
+		ControladorAluno.getInstance().updateTreinosTableData();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

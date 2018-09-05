@@ -18,10 +18,12 @@ public class Treino implements Serializable, ISerializavel {
 
 	private static final long serialVersionUID = 1L;
 	private UUID id;
+	private String nome;
     private ArrayList<Exercicio> exercicios;
 
-    public Treino(ArrayList<Exercicio> exercicios) {
+    public Treino(String nome, ArrayList<Exercicio> exercicios) {
 		this.id = UUID.randomUUID();
+		this.nome = nome;
         this.exercicios = new ArrayList<Exercicio>(exercicios);
     }
 
@@ -50,4 +52,12 @@ public class Treino implements Serializable, ISerializavel {
 		return this.id;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 }
