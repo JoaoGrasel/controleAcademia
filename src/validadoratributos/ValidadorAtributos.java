@@ -6,18 +6,13 @@
 package validadoratributos;
 
 import controleacademia.Excecoes.CpfInvalidoException;
-import controleacademia.Excecoes.CpfMuitoPequenoException;
 import controleacademia.Excecoes.DataNascimentoInvalidaException;
-import controleacademia.Excecoes.DataNascimentoMuitoPequenaException;
-import controleacademia.Excecoes.EnderecoMuitoPequenoException;
-import controleacademia.Excecoes.LoginMuitoPequenoException;
+import controleacademia.Excecoes.EnderecoInvalidoException;
+import controleacademia.Excecoes.LoginInvalidoException;
 import controleacademia.Excecoes.NomeInvalidoException;
-import controleacademia.Excecoes.NomeMuitoPequenoException;
 import controleacademia.Excecoes.RgInvalidoException;
-import controleacademia.Excecoes.RgMuitoPequenoException;
-import controleacademia.Excecoes.SenhaMuitoPequenaException;
+import controleacademia.Excecoes.SenhaInvalidaException;
 import controleacademia.Excecoes.TelefoneInvalidoException;
-import controleacademia.Excecoes.TelefoneMuitoPequenoException;
 
 /**
  *
@@ -45,7 +40,7 @@ public class ValidadorAtributos {
                 }
             }
         } else {
-            throw new NomeMuitoPequenoException();
+            throw new NomeInvalidoException();
         }
 	}
 	
@@ -58,7 +53,7 @@ public class ValidadorAtributos {
                 }
             }
         } else {
-            throw new CpfMuitoPequenoException();
+            throw new CpfInvalidoException();
         }
 	}
 	
@@ -71,7 +66,7 @@ public class ValidadorAtributos {
                 }
             }
         } else {
-            throw new RgMuitoPequenoException();
+            throw new RgInvalidoException();
         }
 	}
 	
@@ -84,7 +79,7 @@ public class ValidadorAtributos {
                 }
             }
         } else {
-            throw new DataNascimentoMuitoPequenaException();
+            throw new DataNascimentoInvalidaException();
         }
 	}
 	
@@ -97,20 +92,20 @@ public class ValidadorAtributos {
                 }
             }
         } else {
-            throw new TelefoneMuitoPequenoException();
+            throw new TelefoneInvalidoException();
         }
 	}	
 	
 	public void validaEndereco(String endereco) throws Exception {
-		if(endereco.length() < 3) throw new EnderecoMuitoPequenoException();
+		if(endereco.length() < 3) throw new EnderecoInvalidoException();
 	}
 	
 	public void validaLogin(String login) throws Exception {
-		if(login.length() >= 3) throw new LoginMuitoPequenoException();
+		if(login.length() < 3) throw new LoginInvalidoException();
 	}
 	
 	public void validaSenha(String senha) throws Exception {
-		if(senha.length() >= 3) throw new SenhaMuitoPequenaException();
+		if(senha.length() < 3) throw new SenhaInvalidaException();
 	}
 	
 }

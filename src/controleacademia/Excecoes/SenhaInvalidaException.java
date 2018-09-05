@@ -9,10 +9,10 @@ package controleacademia.Excecoes;
  *
  * @author thiagobrezinski
  */
-public class EnderecoMuitoPequenoException extends Exception {
+public class SenhaInvalidaException extends Exception {
 	
-	public EnderecoMuitoPequenoException() {
-		super("Endereco muito pequeno!");
+	public SenhaInvalidaException() {
+		super("Senha inválida!");
 	}
 	
 }

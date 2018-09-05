@@ -401,6 +401,8 @@ public class TelaCriarFuncionario extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String dataNascimentoFormatada = jTextField5.getText().concat(jTextField10.getText()).concat(jTextField11.getText());
+		Cargo cargo = this.cargos.get(jComboBox1.getSelectedIndex());
+		
 		ControladorFuncionario.getInstance().cadastrarFuncionario(
 				jTextField1.getText(),
 				jTextField6.getText(),
@@ -410,8 +412,11 @@ public class TelaCriarFuncionario extends javax.swing.JFrame {
 				jTextField4.getText(),
 				jTextField7.getText(),
 				jPasswordField1.getText(),
-				((Cargo) jComboBox1.getSelectedItem())
+				cargo
 		);
+		
+		this.setVisible(false);
+		ControladorFuncionario.getInstance().updateTableData();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed

@@ -74,6 +74,18 @@ public class ControladorFuncionario {
 		}
 	}
 	
+	public void removeFuncionario(int index) {
+		if(index != -1) {
+//			getFuncionarios()
+		} else {
+			//TODO CHAMAR MODAL ERRO
+		}
+	}
+	
+	public void updateTableData() {
+		this.telaGerenciadorFuncionarios.updateData();
+	}
+	
     public void exibirMenu() {
         this.telaGerenciadorFuncionarios.exibir();
     }

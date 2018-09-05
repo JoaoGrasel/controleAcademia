@@ -12,7 +12,7 @@ package controleacademia.Excecoes;
 public class LoginInvalidoException extends Exception {
 	
 	public LoginInvalidoException() {
-		super("Login ou senha incorretos");
+		super("Login inválido!");
 	}
 	
 }
