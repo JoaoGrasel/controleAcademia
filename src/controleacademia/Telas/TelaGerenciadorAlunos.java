@@ -17,10 +17,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaGerenciadorAlunos extends javax.swing.JFrame {
 
+    private ArrayList<Aluno> alunos;
+    
     /**
      * Creates new form TelaFuncionarios
      */
     public TelaGerenciadorAlunos() {
+        this.alunos = new ArrayList<>();
         initComponents();
     }
 
@@ -68,10 +71,10 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
 		modelTable1.addColumn("Endereço");
 		modelTable1.addColumn("Treino");
 		
-        ArrayList<Aluno> listaAlunos = ControladorAluno.getInstance().getAlunos();
+        this.alunos = ControladorAluno.getInstance().getAlunos();
         jTable1.removeAll();
 		
-        for (Aluno aluno : listaAlunos) {
+        for (Aluno aluno : this.alunos) {
 			String nomeTreino = aluno.getTreino() != null ? aluno.getTreino().getNome() : "";
 			
             modelTable1.addRow(new Object[]{
@@ -103,7 +106,6 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -116,7 +118,7 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Gerenciar Treino");
+        jButton2.setText("Cadastrar Treino");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -130,17 +132,10 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Editar Aluno");
+        jButton5.setText("Selecionar Treino");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Deletar Aluno");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -175,9 +170,7 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,7 +188,6 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
@@ -229,15 +221,11 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        ControladorAluno.getInstance().exibeEditarAluno();
+        ControladorAluno.getInstance().exibeSelecionarTreino(this.alunos.get(jTable1.getSelectedRow()));
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ControladorAluno.getInstance().exibirGerenciadorTreinos();
+        ControladorAluno.getInstance().exibeCadastrarTreino();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -283,7 +271,6 @@ public class TelaGerenciadorAlunos extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

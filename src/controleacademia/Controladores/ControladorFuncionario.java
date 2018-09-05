@@ -10,7 +10,6 @@ import gerenciadorpersistencia.GerenciadorPersistencia;
 import gerenciadorcadastro.GerenciadorCadastro;
 import controleacademia.Modelos.Funcionario;
 import controleacademia.Telas.TelaCriarFuncionario;
-import controleacademia.Telas.TelaEditarFuncionario;
 import controleacademia.Telas.TelaGerenciadorFuncionarios;
 import java.util.ArrayList;
 
@@ -23,12 +22,10 @@ public class ControladorFuncionario {
     public static ControladorFuncionario controladorFuncionario;
     private TelaGerenciadorFuncionarios telaGerenciadorFuncionarios;
     private TelaCriarFuncionario telaCriarFuncionario;
-    private TelaEditarFuncionario telaEditarFuncionario;
-
+    
     private ControladorFuncionario() {
         this.telaGerenciadorFuncionarios = new TelaGerenciadorFuncionarios();
         this.telaCriarFuncionario = new TelaCriarFuncionario();
-        this.telaEditarFuncionario = new TelaEditarFuncionario();
     }
 
     public static ControladorFuncionario getInstance() {
@@ -100,9 +97,5 @@ public class ControladorFuncionario {
 
     public void exibirCriarFuncionario() {
         this.telaCriarFuncionario.exibir();
-    }
-    
-    public void exibirEditarFuncionario(){
-        this.telaEditarFuncionario.exibir();
     }
 }

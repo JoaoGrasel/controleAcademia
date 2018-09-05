@@ -65,22 +65,6 @@ public class GerenciadorCadastro {
 		return funcionario;
 	}
 	
-//	public Funcionario editaFuncionario(int index) {
-//		if(index != -1) {
-//			
-//		} else {
-//			//TODO CHAMAR MODAL ERRO
-//		}
-//	}
-	
-	public void removeFuncionario(int index) {
-		if(index != -1) {
-			
-		} else {
-			//TODO CHAMAR MODAL ERRO
-		}
-	}
-	
 	public Aluno cadastraAluno(
 		String nome,
 		String cpf,
@@ -109,22 +93,6 @@ public class GerenciadorCadastro {
 		return aluno;	
 	}
 	
-//	public Aluno editaAluno(int index) {
-//		if(index != -1) {
-//			
-//		} else {
-//			//TODO CHAMAR MODAL ERRO
-//		}
-//	}
-	
-	public void removeAluno(int index) {
-		if(index != -1) {
-			
-		} else {
-			//TODO CHAMAR MODAL ERRO
-		}
-	}
-	
 	public Treino cadastraTreino(String nome, ArrayList<Exercicio> exercicios) throws Exception {
 		ValidadorAtributos.getInstance().validaNome(nome);
 		
@@ -133,21 +101,5 @@ public class GerenciadorCadastro {
 		GerenciadorPersistencia.getInstance().put(treino);
 		return treino;
 	};
-	
-//	public Treino editaTreino(int index) {
-//		if(index != -1) {
-//			
-//		} else {
-////			TODO CHAMAR MODAL ERRO
-//		}
-//	}
-	
-	public void removeTreino(int index) {
-		if(index != -1) {
-			
-		} else {
-//			TODO CHAMAR MODAL ERRO
-		}
-	}
 	
 }

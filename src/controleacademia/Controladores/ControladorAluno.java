@@ -12,10 +12,8 @@ import gerenciadorcadastro.GerenciadorCadastro;
 import gerenciadorpersistencia.GerenciadorPersistencia;
 import controleacademia.Telas.TelaCriarAluno;
 import controleacademia.Telas.TelaCriarTreino;
-import controleacademia.Telas.TelaEditarAluno;
-import controleacademia.Telas.TelaEditarTreino;
 import controleacademia.Telas.TelaGerenciadorAlunos;
-import controleacademia.Telas.TelaGerenciadorTreinos;
+import controleacademia.Telas.TelaSelecionarTreino;
 import java.util.ArrayList;
 
 /**
@@ -27,19 +25,14 @@ public class ControladorAluno {
     public static ControladorAluno controladorAluno;
     private TelaGerenciadorAlunos telaGerenciadorAlunos;
     private TelaCriarAluno telaCriarAluno;
-    private TelaEditarAluno telaEditarAluno;
-    private TelaGerenciadorTreinos telaGerenciadorTreinos;
     private TelaCriarTreino telaCriarTreino;
-    private TelaEditarTreino telaEditarTreino;
+    private TelaSelecionarTreino telaSelecionarTreino;
  
-
     private ControladorAluno() {
         this.telaGerenciadorAlunos = new TelaGerenciadorAlunos();
         this.telaCriarAluno = new TelaCriarAluno();
-        this.telaGerenciadorTreinos = new TelaGerenciadorTreinos();
         this.telaCriarTreino = new TelaCriarTreino();
-        this.telaEditarAluno = new TelaEditarAluno();
-        this.telaEditarTreino = new TelaEditarTreino();
+        this.telaSelecionarTreino = new TelaSelecionarTreino();
     }
 
     public static ControladorAluno getInstance() {
@@ -94,11 +87,18 @@ public class ControladorAluno {
 	public void updateAlunosTableData() {
 		this.telaGerenciadorAlunos.updateData();
 	}
-	
-	public void updateTreinosTableData() {
-		this.telaGerenciadorTreinos.updateData();
-	}
-	
+//	
+//	public void updateTreinosTableData() {
+//		this.telaGerenciadorTreinos.updateData();
+//	}
+//	
+        
+    public void defineTreino(Aluno aluno, Treino treino) {
+        aluno.setTreino(treino);
+        GerenciadorPersistencia.getInstance().put(aluno);
+        this.telaGerenciadorAlunos.updateData();
+    }
+        
     public void exibirMenu() {
         this.telaGerenciadorAlunos.exibir();
     }
@@ -114,22 +114,12 @@ public class ControladorAluno {
     public void exibirCriarAluno() {
         this.telaCriarAluno.exibir();
     }
-    
-    public void exibeEditarAluno(){
-        this.telaEditarAluno.exibir();
-    }
-
-    public void exibirGerenciadorTreinos(){
-        this.telaGerenciadorTreinos.exibir();
-    }
-    
+        
     public void exibeCadastrarTreino(){
         this.telaCriarTreino.exibir();
     }
     
-    public void exibeEditarTreino(){
-        this.telaEditarTreino.exibir();
+    public void exibeSelecionarTreino(Aluno aluno){
+        this.telaSelecionarTreino.exibir(aluno);
     }
-    
-    
 }
